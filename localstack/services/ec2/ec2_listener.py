@@ -22,6 +22,10 @@ def fix_error_tag(response):
     response._content = re.sub(r'<(/?)ErrorResponse', r'<\1Response', to_str(response.content or ''))
 
 
+# TODO: update create-volume return as it's missing AvailabilityZone, SnapshotId
+# TODO: update create-volume returns None as VolumeType if not specified, should return 'standard'
+# TODO: fix create-volume silently fails with `invalid literal for int() with base 10: 'None'` if no --size sent
+
 class ProxyListenerEC2(ProxyListener):
 
     def return_response(self, method, path, data, headers, response):
